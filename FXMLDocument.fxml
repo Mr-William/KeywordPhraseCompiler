@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="651.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phrasebuilderv2.FXMLDocumentController">
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="604.0" prefWidth="797.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab id="phraseTab" fx:id="tab1" closable="false" text="1. Phrase Selection">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="31.0" prefHeight="223.0" prefWidth="385.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="32.0">
+                           <children>
+                              <ListView fx:id="phraseSelectListview" editable="true" layoutX="16.0" layoutY="12.0" onMouseEntered="#focusSelectList" onMouseExited="#unfocusList" onMousePressed="#selectPhrase" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <RadioButton fx:id="manualSelectRdo" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#manualButtonSelected" selected="true" text="Manual Selection" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="phraseOptions" />
+                           </toggleGroup>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Select this option if you wish to manually choose which phrases to use." textOverrun="WORD_ELLIPSIS">
+                                 <font>
+                                    <Font name="System Italic" size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </RadioButton>
+                        <RadioButton fx:id="randomSelectRdo" layoutX="10.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#randomButtonSelected" text="Random Selection" toggleGroup="$phraseOptions" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="273.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Select this option if you wish to specify a number of phrases to be selected for you." textOverrun="WORD_ELLIPSIS">
+                                 <font>
+                                    <Font name="System Italic" size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </RadioButton>
+                        <Label layoutX="10.0" layoutY="293.0" text="How many phrases would you like?" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="293.0" />
+                        <AnchorPane layoutX="411.0" layoutY="32.0" prefHeight="223.0" prefWidth="385.0" AnchorPane.leftAnchor="411.0" AnchorPane.topAnchor="32.0">
+                           <children>
+                              <ListView fx:id="phrasesSelectedListview" editable="true" layoutX="16.0" layoutY="12.0" onMouseEntered="#focusSelectedList" onMouseExited="#unfocusList" onMousePressed="#removePhrase" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label alignment="CENTER_RIGHT" layoutX="647.0" layoutY="10.0" text="Currently Selected Phrases" AnchorPane.leftAnchor="647.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Separator focusTraversable="false" layoutX="402.0" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Separator>
+                        <TextField fx:id="phraseCountInput" disable="true" layoutX="14.0" layoutY="314.0" onKeyTyped="#phraseCountChanged" prefHeight="31.0" prefWidth="175.0" promptText="Enter a number 1-000" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="314.0" />
+                        <Button fx:id="selectPhrasesButton" disable="true" layoutX="14.0" layoutY="352.0" mnemonicParsing="false" onAction="#selectRandomPhrases" prefHeight="31.0" prefWidth="176.0" text="Select Random Phrases" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="352.0" />
+                        <Button layoutX="716.0" layoutY="266.0" mnemonicParsing="false" onAction="#clearSelectedPhrases" text="Clear List" AnchorPane.leftAnchor="716.0" AnchorPane.topAnchor="266.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab id="keywordTab" fx:id="tab2" closable="false" text="2. Keyword File Selection">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Select Keyword File(s)" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="14.0" layoutY="31.0" prefHeight="250.0" prefWidth="350.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="30.0">
+                           <children>
+                              <ListView fx:id="kwFileSelectListview" layoutX="14.0" layoutY="18.0" onMousePressed="#selectKeywordFile" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="435.0" layoutY="31.0" prefHeight="250.0" prefWidth="350.0" AnchorPane.leftAnchor="435.0" AnchorPane.topAnchor="30.0">
+                           <children>
+                              <ListView fx:id="kwListView" layoutY="14.0" onMouseClicked="#removeKeyword" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="628.0" layoutY="14.0" text="Keywords in Selected File(s)" AnchorPane.leftAnchor="628.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="keywordFileButton" disable="true" layoutX="377.0" layoutY="338.0" mnemonicParsing="false" onAction="#populateKeywords" text="Accept" AnchorPane.leftAnchor="377.0" AnchorPane.topAnchor="338.0" />
+                        <AnchorPane layoutX="14.0" layoutY="311.0" prefHeight="200.0" prefWidth="350.0">
+                           <children>
+                              <ListView fx:id="kwFilesSelectedListview" layoutX="46.0" layoutY="-14.0" onMousePressed="#removeKeywordFile" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="14.0" layoutY="294.0" text="Keyword Files Selected" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="294.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="keywordClearButton" layoutX="382.0" layoutY="372.0" mnemonicParsing="false" onAction="#clearKeywords" text="Clear" AnchorPane.leftAnchor="382.0" AnchorPane.topAnchor="372.0" />
+                        <Button fx:id="clearKeywords" layoutX="687.0" layoutY="290.0" mnemonicParsing="false" onAction="#clearKeywordList" text="Clear Keywords" AnchorPane.leftAnchor="687.0" AnchorPane.topAnchor="290.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="tab3" onSelectionChanged="#generatePhrasesList" text="3. Save">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="812.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="23.0" text="Save Output As:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="23.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fileOutputName" layoutX="135.0" layoutY="16.0" onKeyReleased="#updateSaveName" onKeyTyped="#updateSaveName" onMouseClicked="#updateSaveName" prefHeight="31.0" prefWidth="270.0" text="MasterAMZList" />
+                        <Label layoutX="14.0" layoutY="73.0" text="Save Location:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="73.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="destinationText" layoutX="135.0" layoutY="66.0" prefHeight="31.0" prefWidth="270.0" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="66.0" />
+                        <Button fx:id="fileBrowser" layoutX="429.0" layoutY="66.0" mnemonicParsing="false" onAction="#browseFiles" text="Browse" AnchorPane.leftAnchor="429.0" AnchorPane.topAnchor="66.0" />
+                        <AnchorPane layoutX="14.0" layoutY="178.0" prefHeight="206.0" prefWidth="475.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="178.0">
+                           <children>
+                              <ListView fx:id="generatedPhrasesListview" layoutX="14.0" layoutY="14.0" onMouseClicked="#removeFinalPhrase" prefHeight="192.0" prefWidth="516.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="15.0" layoutY="155.0" text="Created Phrases - Click a phrase to remove it from the list.">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="submitButton" disable="true" layoutX="519.0" layoutY="353.0" mnemonicParsing="false" onAction="#savePhrases" text="Save Phrases to File">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="15.0" layoutY="121.0" text="Full Save Name:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="121.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="finalNameText" layoutX="135.0" layoutY="116.0" prefHeight="31.0" prefWidth="270.0" />
+                        <Button fx:id="generatePhraseButton" layoutX="521.0" layoutY="178.0" mnemonicParsing="false" onAction="#generatePhrases" prefHeight="31.0" prefWidth="154.0" text="Generate Phrases" AnchorPane.leftAnchor="521.0" AnchorPane.topAnchor="178.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="clearPhrases" layoutX="555.0" layoutY="222.0" mnemonicParsing="false" onAction="#clearPhrases" text="Clear Phrases" />
+                        <Label layoutX="15.0" layoutY="384.0" text="Duplicate Phrases" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="384.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="14.0" layoutY="401.0" prefHeight="206.0" prefWidth="475.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="401.0">
+                           <children>
+                              <ListView fx:id="duplicateListview" layoutX="67.0" layoutY="-8.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
